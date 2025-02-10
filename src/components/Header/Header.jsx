@@ -52,12 +52,12 @@ function Header() {
 
 export default Header;
 
-function GuestOptionList() {
+function GuestOptionList({options}) {
   return (
     <div className="guestOptions">
-      <OptionItem />
-      <OptionItem />
-      <OptionItem />
+      <OptionItem type="adult" />
+      <OptionItem type="children" />
+      <OptionItem type="room" />
     </div>
   );
 }
