@@ -25,12 +25,12 @@ function Header() {
             id="destination"
           />
 
-          <span className="seperator"></span>
+          <span className="separator"></span>
         </div>
         <div className="headerSearchItem">
           <HiCalendar className="headerIcon dareIcon" />
           <div className="dateDropDown">2023/06/23</div>
-          <span className="seperator"></span>
+          <span className="separator"></span>
         </div>
 
         <div className="headerSearchItem">
@@ -38,7 +38,7 @@ function Header() {
             1 adult &bull; 2 children &bull; 1 room
           </div>
           {openOptions && <GuestOptionList options={options}/>}
-          <span className="seperator"></span>
+          <span className="separator"></span>
         </div>
         <div className="headerSearchItem">
           <button className="headerSearchBtn">
