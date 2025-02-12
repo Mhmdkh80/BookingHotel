@@ -27,6 +27,10 @@
   align-items: center;
   position: relative;
 }
+.dateDropDown {
+  cursor: pointer;
+}
+
 .headerSearchItem .separator {
   display: inline-block;
   width: 1px;
@@ -371,6 +375,6 @@ a.active {
   height: 1.1rem;
 }
 
-#optionDropDown{
+#optionDropDown {
   cursor: pointer;
 }
