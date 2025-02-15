@@ -14,9 +14,7 @@ import {
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [destination, setDestination] = useState(
-    searchParams.get("destination" || "")
-  );
+  const [destination, setDestination] = useState("");
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
