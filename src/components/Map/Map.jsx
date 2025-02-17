@@ -1,10 +1,12 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useHotels } from "../Context/HotelsProvider";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 function Map() {
   const { isLoading, hotels } = useHotels();
   const [mapCenter, setMapCenter] = useState([51, -3]);
+  const [searchParams, setSearchParams] = useSearchParams();
   return (
     <div className="mapContainer">
       <MapContainer
