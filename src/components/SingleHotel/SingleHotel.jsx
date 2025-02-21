@@ -4,7 +4,7 @@ import Loader from "../Loader/Loader";
 
 function SingleHotel() {
   const { id } = useParams();
-  const { data, isLoading } = useFetch(`http://localhost:5000/${id}`);
+  const { data, isLoading } = useFetch(`http://localhost:5000/hotels/${id}`);
 
   if (isLoading) return <Loader />;
   return (
@@ -14,6 +14,7 @@ function SingleHotel() {
         <div>
           {data.number_of_reviews} reviews &bull; {data.smart_location}
         </div>
+        <img src={data.xl_picture_url} alt={data.name} />
       </div>
     </div>
   );
