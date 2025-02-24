@@ -6,7 +6,7 @@ const HotelContext = createContext();
 
 function HotelsProvider({ children }) {
   const [currentHotel, setCurrentHotel] = useState(null);
-  const [isLoadingCurrHotel, setIsLoadinCurrHotel] = useState(false);
+  const [isLoadingCurrHotel, setIsLoadingCurrHotel] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const destination = searchParams.get("destination");
   const room = JSON.parse(searchParams.get("options"))?.room;
@@ -16,20 +16,20 @@ function HotelsProvider({ children }) {
   );
 
   async function getHotel(id) {
-    setIsLoadinCurrHotel(true);
+    setIsLoadingCurrHotel(true);
     try {
       const { data } = await axios.get(`${Base_URL}/id`);
       setCurrentHotel(data);
-      setIsLoadinCurrHotel(false);
+      setIsLoadingCurrHotel(false);
     } catch (error) {
       toast.error(error.message);
-      setIsLoadinCurrHotel(false);
+      setIsLoadingCurrHotel(false);
     }
   }
 
   return (
     <HotelContext.Provider
-      value={{ isLoading, hotels, getHotel, isLoadingCurrHotel }}
+      value={{ isLoading, hotels, currentHotel, getHotel, isLoadingCurrHotel }}
     >
       {children}
     </HotelContext.Provider>

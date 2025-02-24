@@ -1,8 +1,15 @@
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import { useHotels } from "../Context/HotelsProvider";
+import { useEffect } from "react";
 
 function SingleHotel() {
   const { id } = useParams();
+  const { getHotel, isLoadingCurrHotel } = useHotels();
+
+  useEffect(() => {
+    getHotel(id);
+  }, [id]);
 
   return (
     <div className="">single hotel</div>
