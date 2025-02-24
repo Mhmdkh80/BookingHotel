@@ -1,10 +1,12 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 const HotelContext = createContext();
 
 function HotelsProvider({ children }) {
+  const [currentHotel, setCurrentHotel] = useState(null);
+  const [isLoadingCurrHotel, setIsLoadinCurrHotel] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const destination = searchParams.get("destination");
   const room = JSON.parse(searchParams.get("options"))?.room;
@@ -12,8 +14,23 @@ function HotelsProvider({ children }) {
     "http://localhost:5000/hotels",
     `q=${destination || ""}&accommodates_gte=${room || 1}`
   );
+
+  async function getHotel(id) {
+    setIsLoadinCurrHotel(true);
+    try {
+      const { data } = await axios.get(`${Base_URL}/id`);
+      setCurrentHotel(data);
+      setIsLoadinCurrHotel(false);
+    } catch (error) {
+      toast.error(error.message);
+      setIsLoadinCurrHotel(false);
+    }
+  }
+
   return (
-    <HotelContext.Provider value={{ isLoading, hotels }}>
+    <HotelContext.Provider
+      value={{ isLoading, hotels, getHotel, isLoadingCurrHotel }}
+    >
       {children}
     </HotelContext.Provider>
   );
