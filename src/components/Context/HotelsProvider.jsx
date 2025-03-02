@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 const HotelContext = createContext();
+const BASE_URL = "src/components/Context";
 
 function HotelsProvider({ children }) {
   const [currentHotel, setCurrentHotel] = useState(null);
@@ -11,14 +12,14 @@ function HotelsProvider({ children }) {
   const destination = searchParams.get("destination");
   const room = JSON.parse(searchParams.get("options"))?.room;
   const { isLoading, data: hotels } = useFetch(
-    "http://localhost:5000/hotels",
+    BASE_URL,
     `q=${destination || ""}&accommodates_gte=${room || 1}`
   );
 
   async function getHotel(id) {
     setIsLoadingCurrHotel(true);
     try {
-      const { data } = await axios.get(`${Base_URL}/id`);
+      const { data } = await axios.get(`${BASE_URL}/id`);
       setCurrentHotel(data);
       setIsLoadingCurrHotel(false);
     } catch (error) {
