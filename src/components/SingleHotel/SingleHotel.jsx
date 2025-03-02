@@ -11,6 +11,8 @@ function SingleHotel() {
     getHotel(id);
   }, [id]);
 
+
+  
   return (
     <div className="">single hotel</div>
     // <div className="room">
