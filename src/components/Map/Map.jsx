@@ -49,7 +49,7 @@ function Map() {
             <Popup>{item.host_location}</Popup>
           </Marker>
         ))}
-      </MapContainer>
+      </MapContainer> 
     </div>
   );
 }

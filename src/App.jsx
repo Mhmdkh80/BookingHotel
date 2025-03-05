@@ -19,6 +19,7 @@ function App() {
           <Route index element={<Hotels />} />
           <Route path=":id" element={<SingleHotel />} />
         </Route>
+        <Route path="/bookmark" element={<div>bookmark page</div>}/>
       </Routes>
     </HotelsProvider>
   );
