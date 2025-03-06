@@ -6,13 +6,13 @@ import {
   useMap,
   useMapEvent,
 } from "react-leaflet";
-import { useHotels } from "../Context/HotelsProvider";
+
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useGeoLocation from "../../hooks/useGeoLocation";
 
-function Map() {
-  const { isLoading, hotels } = useHotels();
+function Map({ markerLocations }) {
+  // const { hotels } = useHotels();
   const [mapCenter, setMapCenter] = useState([20, 3]);
   const [searchParams, setSearchParams] = useSearchParams();
   const lat = searchParams.get("lat");
@@ -50,7 +50,7 @@ function Map() {
         />
         <DetectClick />
         <ChangeCenter position={mapCenter} />
-        {hotels.map((item) => (
+        {markerLocations.map((item) => (
           <Marker key={item.id} position={[item.latitude, item.longitude]}>
             <Popup>{item.host_location}</Popup>
           </Marker>
