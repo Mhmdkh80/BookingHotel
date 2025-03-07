@@ -1,6 +1,6 @@
 import Map from "../Map/Map";
 
-function Bookmark() {
+function BookmarkLayout() {
   return (
     <div className="appLayout">
       <div className="sidebar">
@@ -12,4 +12,4 @@ function Bookmark() {
   );
 }
 
-export default Bookmark;
+export default BookmarkLayout;

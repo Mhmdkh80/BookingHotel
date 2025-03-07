@@ -7,7 +7,7 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
 import HotelsProvider from "./components/Context/HotelsProvider";
 import SingleHotel from "./components/SingleHotel/SingleHotel";
-import Bookmark from "./components/Bookmark/Bookmark";
+import Bookmark from "./components/BookmarkLayout/BookmarkLayout";
 
 function App() {
   return (
