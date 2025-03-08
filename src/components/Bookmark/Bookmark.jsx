@@ -20,6 +20,7 @@ function Bookmark() {
               <div key={item.id} className="bookmarkItem">
                 <ReactCountryFlag svg countryCode={item.countryCode} />
                 &nbsp; <strong>{item.cityName}</strong> &nbsp;
+                <span>{item.country}</span>
               </div>
             </Link>
           );

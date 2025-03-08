@@ -26,7 +26,6 @@ function App() {
           <Route path="/bookmark" element={<BookmarkLayout />}>
             <Route index element={<Bookmark />} />
             <Route path=":id" element={<div>single bookmark</div>} />
-
             <Route path="add" element={<div>add new bookmark</div>} />
           </Route>
         </Routes>
