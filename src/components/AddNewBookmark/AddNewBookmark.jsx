@@ -11,16 +11,25 @@ function AddNewBookmark() {
   const [lat, lng] = useUrlLocation();
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
+  const [countryCode, setCountryCode] = useState("");
+  const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
+  const [geoCodingError, setGeoCodingError] = useState(null);
 
   useEffect(() => {
     async function fetchLocationData() {
+      setIsLoadingGeoCoding(true);
+      setGeoCodingError(null);
       try {
         const { data } = await axios.get(
           `${BASE_GEOCODING_URL}?latitude=${lat}&longitude=${lng}`
         );
         setCityName(data.city || data.locality || "");
         setCountry(data.countryName);
-      } catch (error) {}
+        setCountryCode("");
+      } catch (error) {
+      } finally {
+        setIsLoadingGeoCoding(false)
+      }
     }
     fetchLocationData();
   }, [lat, lng]);
