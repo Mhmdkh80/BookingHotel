@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import useUrlLocation from "../../hooks/useUrlLocation";
+import { useState } from "react";
 
 function AddNewBookmark() {
   const navigate = useNavigate();
   const [lat, lng] = useUrlLocation();
+  const [cityName, setCityName] = useState("");
+  const [country, setCountry] = useState("");
 
   return (
     <div>
@@ -11,9 +14,21 @@ function AddNewBookmark() {
       <form className="form">
         <div className="formControl">
           <label htmlFor="CityName">CityName</label>
-          <input type="text" name="CityName" id="CityName" />
+          <input
+            value={cityName}
+            onChange={(e) => setCityName(e.target.value)}
+            type="text"
+            name="CityName"
+            id="CityName"
+          />
           <label htmlFor="Country">Country</label>
-          <input type="text" name="Country" id="Country" />
+          <input
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            type="text"
+            name="Country"
+            id="Country"
+          />
         </div>
         <div className="buttons">
           <button
