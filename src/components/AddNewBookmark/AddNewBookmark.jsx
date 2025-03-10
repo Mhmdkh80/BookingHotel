@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useUrlLocation from "../../hooks/useUrlLocation";
 import { useEffect, useState } from "react";
+import Loader from "../Loader/Loader";
 import axios from "axios";
 
 const BASE_GEOCODING_URL =
@@ -16,6 +17,7 @@ function AddNewBookmark() {
   const [geoCodingError, setGeoCodingError] = useState(null);
 
   useEffect(() => {
+    if (!lat || !lng) return;
     async function fetchLocationData() {
       setIsLoadingGeoCoding(true);
       setGeoCodingError(null);
@@ -23,16 +25,22 @@ function AddNewBookmark() {
         const { data } = await axios.get(
           `${BASE_GEOCODING_URL}?latitude=${lat}&longitude=${lng}`
         );
+        if (!data.countryCode) throw new Error("this area is not a city! please click somewhere else.");
+
         setCityName(data.city || data.locality || "");
         setCountry(data.countryName);
-        setCountryCode("");
+        setCountryCode(data.countryCode);
       } catch (error) {
+        setGeoCodingError(error.message);
       } finally {
-        setIsLoadingGeoCoding(false)
+        setIsLoadingGeoCoding(false);
       }
     }
     fetchLocationData();
   }, [lat, lng]);
+
+  if (isLoadingGeoCoding) return <Loader />;
+  if(geoCodingError) return <p>{geoCodingError}</p>
 
   return (
     <div>
