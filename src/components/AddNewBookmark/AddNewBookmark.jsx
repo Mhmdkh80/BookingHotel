@@ -3,6 +3,15 @@ import useUrlLocation from "../../hooks/useUrlLocation";
 import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import axios from "axios";
+import ReactCountryFlag from "react-country-flag";
+
+// function getFlagEmoji(countryCode) {
+//   const codePoints = countryCode
+//     .toUpperCase()
+//     .split("")
+//     .map((char) => 127397 + char.charCodeAt());
+//   return String.fromCodePoint(...codePoints);
+// }
 
 const BASE_GEOCODING_URL =
   "https://us1.api-bdc.net/data/reverse-geocode-client";
@@ -25,7 +34,10 @@ function AddNewBookmark() {
         const { data } = await axios.get(
           `${BASE_GEOCODING_URL}?latitude=${lat}&longitude=${lng}`
         );
-        if (!data.countryCode) throw new Error("this area is not a city! please click somewhere else.");
+        if (!data.countryCode)
+          throw new Error(
+            "this area is not a city! please click somewhere else."
+          );
 
         setCityName(data.city || data.locality || "");
         setCountry(data.countryName);
@@ -40,7 +52,7 @@ function AddNewBookmark() {
   }, [lat, lng]);
 
   if (isLoadingGeoCoding) return <Loader />;
-  if(geoCodingError) return <p>{geoCodingError}</p>
+  if (geoCodingError) return <p>{geoCodingError}</p>;
 
   return (
     <div>
@@ -55,6 +67,8 @@ function AddNewBookmark() {
             name="CityName"
             id="CityName"
           />
+          <ReactCountryFlag className="flag" svg countryCode={countryCode}/>
+          {/* <span className="flag">{countryCode}</span> */}
           <label htmlFor="Country">Country</label>
           <input
             value={country}

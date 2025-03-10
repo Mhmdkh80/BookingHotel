@@ -364,6 +364,7 @@
 
 .formControl .flag {
   position: absolute;
+  margin-top: 1.7rem;
   right: 1rem;
   top: 50%;
 }
