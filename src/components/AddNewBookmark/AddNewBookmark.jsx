@@ -54,6 +54,8 @@ function AddNewBookmark() {
   if (isLoadingGeoCoding) return <Loader />;
   if (geoCodingError) return <p>{geoCodingError}</p>;
 
+
+  
   return (
     <div>
       <h2>Bookmark new location</h2>
