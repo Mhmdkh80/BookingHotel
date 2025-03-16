@@ -51,15 +51,27 @@ function AddNewBookmark() {
     fetchLocationData();
   }, [lat, lng]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!cityName || !country) return;
+
+    const newBookmark = {
+      cityName,
+      country,
+      countryCode,
+      latitude: lat,
+      longtitude: lng,
+      host_location: cityName + "" + country,
+    };
+  };
+
   if (isLoadingGeoCoding) return <Loader />;
   if (geoCodingError) return <p>{geoCodingError}</p>;
 
-
-  
   return (
     <div>
       <h2>Bookmark new location</h2>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <div className="formControl">
           <label htmlFor="CityName">CityName</label>
           <input
@@ -69,7 +81,7 @@ function AddNewBookmark() {
             name="CityName"
             id="CityName"
           />
-          <ReactCountryFlag className="flag" svg countryCode={countryCode}/>
+          <ReactCountryFlag className="flag" svg countryCode={countryCode} />
           {/* <span className="flag">{countryCode}</span> */}
           <label htmlFor="Country">Country</label>
           <input
