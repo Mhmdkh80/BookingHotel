@@ -1386,6 +1386,15 @@
       "longitude": "3.2560729980468754",
       "host_location": "AbeibaraMali",
       "id": 10
+    },
+    {
+      "cityName": "Abalak",
+      "country": "Niger (the)",
+      "countryCode": "NE",
+      "latitude": "15.447061912175208",
+      "longitude": "6.295166015625001",
+      "host_location": "AbalakNiger (the)",
+      "id": 11
     }
   ]
 }
