@@ -1368,6 +1368,24 @@
       "longitude": "67.78003711374224",
       "host_location": "Baba Kot Pakistan",
       "id": 8
+    },
+    {
+      "cityName": "Tin Zaouatine",
+      "country": "Algeria",
+      "countryCode": "DZ",
+      "latitude": "20.02889914920843",
+      "longitude": "3.0035184197290743",
+      "host_location": "Tin ZaouatineAlgeria",
+      "id": 9
+    },
+    {
+      "cityName": "Abeibara",
+      "country": "Mali",
+      "countryCode": "ML",
+      "latitude": "19.826202184596973",
+      "longitude": "3.2560729980468754",
+      "host_location": "AbeibaraMali",
+      "id": 10
     }
   ]
 }

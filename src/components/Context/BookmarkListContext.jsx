@@ -16,12 +16,24 @@ function BookmarkListProvider({ children }) {
     setCurrentBookmark(null);
     try {
       const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
-      console.log(data);
 
       setCurrentBookmark(data);
-      setIsLoadingCurrBookmark(false);
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setIsLoadingCurrBookmark(false);
+    }
+  }
+
+  async function createBookmark(newBookmark) {
+    setIsLoadingCurrBookmark(true);
+    try {
+      const { data } = await axios.post(`${BASE_URL}/bookmarks/`, newBookmark);
+      setCurrentBookmark(data);
+      console.log(data);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
       setIsLoadingCurrBookmark(false);
     }
   }
@@ -34,6 +46,7 @@ function BookmarkListProvider({ children }) {
         currentBookmark,
         getBookmark,
         isLoadingCurrBookmark,
+        createBookmark,
       }}
     >
       {children}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import axios from "axios";
 import ReactCountryFlag from "react-country-flag";
+import { useBookmark } from "../Context/BookmarkListContext";
 
 // function getFlagEmoji(countryCode) {
 //   const codePoints = countryCode
@@ -24,6 +25,7 @@ function AddNewBookmark() {
   const [countryCode, setCountryCode] = useState("");
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
   const [geoCodingError, setGeoCodingError] = useState(null);
+  const{createBookmark}= useBookmark()
 
   useEffect(() => {
     if (!lat || !lng) return;
@@ -51,7 +53,7 @@ function AddNewBookmark() {
     fetchLocationData();
   }, [lat, lng]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     if (!cityName || !country) return;
 
@@ -60,9 +62,10 @@ function AddNewBookmark() {
       country,
       countryCode,
       latitude: lat,
-      longtitude: lng,
+      longitude: lng,
       host_location: cityName + "" + country,
     };
+    await createBookmark(newBookmark)
   };
 
   if (isLoadingGeoCoding) return <Loader />;
