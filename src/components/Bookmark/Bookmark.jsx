@@ -2,6 +2,7 @@ import ReactCountryFlag from "react-country-flag";
 import { useBookmark } from "../Context/BookmarkListContext";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
+import { HiTrash } from "react-icons/hi";
 
 function Bookmark() {
   const { isLoading, bookmarks, currentBookmark } = useBookmark();
@@ -23,9 +24,14 @@ function Bookmark() {
                   item.id === currentBookmark?.id ? "current-bookmark" : ""
                 }`}
               >
-                <ReactCountryFlag svg countryCode={item.countryCode} />
-                &nbsp; <strong>{item.cityName}</strong> &nbsp;
-                <span>{item.country}</span>
+                <div>
+                  <ReactCountryFlag svg countryCode={item.countryCode} />
+                  &nbsp; <strong>{item.cityName}</strong> &nbsp;
+                  <span>{item.country}</span>
+                </div>
+                <button>
+                  <HiTrash />
+                </button>
               </div>
             </Link>
           );
