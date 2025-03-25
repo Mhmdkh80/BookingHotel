@@ -8,7 +8,7 @@ function SingleBookmark() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { getBookmark, isLoading, currentBookmark } = useBookmark();
-  useEffect(() => {
+  useEffect(() => { 
     getBookmark(id);
   }, [id]);
 

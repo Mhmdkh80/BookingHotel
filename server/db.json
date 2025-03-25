@@ -1395,6 +1395,15 @@
       "longitude": "6.295166015625001",
       "host_location": "AbalakNiger (the)",
       "id": 11
+    },
+    {
+      "cityName": "Tin Zaouatine",
+      "country": "Mali",
+      "countryCode": "ML",
+      "latitude": "19.95343296927133",
+      "longitude": "2.9695701599121094",
+      "host_location": "Tin ZaouatineMali",
+      "id": 12
     }
   ]
 }
