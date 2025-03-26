@@ -6,6 +6,11 @@ import { HiTrash } from "react-icons/hi";
 
 function Bookmark() {
   const { isLoading, bookmarks, currentBookmark } = useBookmark();
+
+  const handleDelete = (e, id) => {
+    e.preventDefault();
+  };
+
   if (isLoading) return <Loader />;
 
   return (
@@ -29,7 +34,7 @@ function Bookmark() {
                   &nbsp; <strong>{item.cityName}</strong> &nbsp;
                   <span>{item.country}</span>
                 </div>
-                <button>
+                <button onClick={(e) => handleDelete(e, item.id)}>
                   <HiTrash />
                 </button>
               </div>
