@@ -404,6 +404,10 @@ a.active {
   border: 1px solid black;
  border-radius: 50%;
 }
+.btn-trash:hover{
+  background-color: black;
+  color: white;
+}
 
 #optionDropDown {
   cursor: pointer;
