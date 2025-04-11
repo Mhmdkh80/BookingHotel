@@ -36,14 +36,14 @@ function bookmarkReducer(state, action) {
         ...state,
         isLoading: false,
         bookmarks: [...state.bookmarks, action.payload],
+        currentBookmark: action.payload,
       };
     case "bookmark/deleted":
       return {
         ...state,
         isLoading: false,
-        bookmarks: state.bookmarks.filter(
-          (item) => item.id !== action.payload
-        ),
+        bookmarks: state.bookmarks.filter((item) => item.id !== action.payload),
+        currentBookmark: null,
       };
     case "rejected":
       return {
@@ -81,6 +81,7 @@ function BookmarkListProvider({ children }) {
   }, []);
 
   async function getBookmark(id) {
+    if (Number(id) === currentBookmark?.id) return;
     dispatch({ type: "loading" });
     // setCurrentBookmark(null);
     try {
