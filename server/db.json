@@ -1323,5 +1323,24 @@
       ]
     }
   ],
-  "bookmarks": []
+  "bookmarks": [
+    {
+      "cityName": "Tin Zaouatine",
+      "country": "Algeria",
+      "countryCode": "DZ",
+      "latitude": "19.974861305931615",
+      "longitude": "2.9723167419433594",
+      "host_location": "Tin ZaouatineAlgeria",
+      "id": 1
+    },
+    {
+      "cityName": "Abeibara",
+      "country": "Mali",
+      "countryCode": "ML",
+      "latitude": "19.949368367180547",
+      "longitude": "2.9683685302734375",
+      "host_location": "AbeibaraMali",
+      "id": 2
+    }
+  ]
 }

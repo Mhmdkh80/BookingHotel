@@ -38,7 +38,7 @@ function Bookmark() {
                   &nbsp; <strong>{item.cityName}</strong> &nbsp;
                   <span>{item.country}</span>
                 </div>
-                <button onClick={(e) => handleDelete(e, item.id)}>
+                <button className="btn-trash" onClick={(e) => handleDelete(e, item.id)}>
                   <HiTrash />
                 </button>
               </div>
