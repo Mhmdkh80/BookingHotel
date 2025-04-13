@@ -1325,22 +1325,13 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Abeibara",
-      "country": "Mali",
-      "countryCode": "ML",
-      "latitude": "19.949368367180547",
-      "longitude": "2.9683685302734375",
-      "host_location": "AbeibaraMali",
-      "id": 2
-    },
-    {
-      "cityName": "Tichit",
-      "country": "Mauritania",
-      "countryCode": "MR",
-      "latitude": "19.25929414046391",
-      "longitude": "-10.283203125000002",
-      "host_location": "TichitMauritania",
-      "id": 3
+      "cityName": "Tin Zaouatine",
+      "country": "Algeria",
+      "countryCode": "DZ",
+      "latitude": "20.042123494938274",
+      "longitude": "2.9536056518554688",
+      "host_location": "Tin ZaouatineAlgeria",
+      "id": 1
     }
   ]
 }
