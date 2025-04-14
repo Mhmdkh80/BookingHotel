@@ -41,7 +41,9 @@ export default function AuthContextProvider({ children }) {
       dispatch({ type: "login", payload: Fake_User });
   }
 
-  function logout() {}
+  function logout() {
+    dispatch({ type: "logout" });
+  }
   return (
     <AuthContext.Provider value={(user, isAuthenticated, login, logout)}>
       {children}
