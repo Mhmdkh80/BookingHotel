@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-const authContext = createContext();
+const AuthContext = createContext();
 
 const initialState = {
   user: null,
@@ -8,7 +8,20 @@ const initialState = {
 };
 
 function authReducer(state, action) {
-  switch(action.type)
+  switch (action.type) {
+    case "login":
+      return {
+        user: action.payload,
+        isAuthenticated: true,
+      };
+    case "logout":
+      return {
+        user: null,
+        isAuthenticated: false,
+      };
+    default:
+      throw new Error("Unknown action");
+  }
 }
 
 const Fake_User = {
@@ -30,8 +43,8 @@ export default function AuthContextProvider({ children }) {
 
   function logout() {}
   return (
-    <authContext.Provider value={(user, isAuthenticated, login, logout)}>
+    <AuthContext.Provider value={(user, isAuthenticated, login, logout)}>
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 }
