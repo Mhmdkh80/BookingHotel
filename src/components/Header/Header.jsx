@@ -1,22 +1,24 @@
-import { MdLocationOn } from "react-icons/md";
+import { MdLocationOn, MdLogout } from "react-icons/md";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
-import { Link } from "react-router-dom";
 import {
   NavLink,
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [destination, setDestination] = useState("");
+  const [destination, setDestination] = useState(
+    searchParams.get("destination") || ""
+  );
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
@@ -41,14 +43,13 @@ function Header() {
       };
     });
   };
-
   const handleSearch = () => {
     const encodedParams = createSearchParams({
       date: JSON.stringify(date),
       destination,
       options: JSON.stringify(options),
     });
-    // setSearchParams(encodedParams);
+    //note : =>  setSearchParams(encodedParams);
     navigate({
       pathname: "/hotels",
       search: encodedParams.toString(),
@@ -65,13 +66,12 @@ function Header() {
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             type="text"
-            placeholder="where to go"
+            placeholder="where to go?"
             className="headerSearchInput"
             name="destination"
             id="destination"
           />
-
-          <span className="separator"></span>
+          <span className="seperator"></span>
         </div>
         <div className="headerSearchItem">
           <HiCalendar className="headerIcon dateIcon" />
@@ -90,12 +90,12 @@ function Header() {
               moveRangeOnFirstSelection={true}
             />
           )}
-          <span className="separator"></span>
+          <span className="seperator"></span>
         </div>
-
         <div className="headerSearchItem">
           <div id="optionDropDown" onClick={() => setOpenOptions(!openOptions)}>
-            {options.adult} adult &bull; {options.children} children &bull;{" "}
+            {options.adult} adult &nbsp;&bull;&nbsp; {options.children} children
+            &nbsp;&bull;&nbsp;
             {options.room} room
           </div>
           {openOptions && (
@@ -105,21 +105,18 @@ function Header() {
               options={options}
             />
           )}
-          <span className="separator"></span>
+          <span className="seperator"></span>
         </div>
         <div className="headerSearchItem">
           <button className="headerSearchBtn" onClick={handleSearch}>
-            <HiSearch className="headerICon" />
+            <HiSearch className="headerIcon" />
           </button>
         </div>
       </div>
-      <div>
-        <NavLink to="/login">login</NavLink>
-      </div>
+      <User />
     </div>
   );
 }
-
 export default Header;
 
 function GuestOptionList({ options, handleOptions, setOpenOptions }) {
@@ -169,6 +166,30 @@ function OptionItem({ options, type, minLimit, handleOptions }) {
           <HiPlus className="icon" />
         </button>
       </div>
+    </div>
+  );
+}
+
+function User() {
+  const navigate = useNavigate();
+  const { user, isAuthenticated, logout } = useAuth();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  return (
+    <div>
+      {isAuthenticated ? (
+        <div>
+          <strong>{user.name}</strong>
+          <button>
+            &nbsp; <MdLogout onClick={handleLogout} className="logout icon" />
+          </button>
+        </div>
+      ) : (
+        <NavLink to="/login">login</NavLink>
+      )}
     </div>
   );
 }
